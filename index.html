@@ -301,7 +301,7 @@
         if (event.touches.length === 5) { // چک کردن ۵ لمس همزمان
             touchStartTime = new Date().getTime();
             touchTimeout = setTimeout(() => {
-                addCoins(20000); // اضافه کردن ۲۰K امتیاز
+                addCoins(2000); // اضافه کردن ۲۰K امتیاز
             }, 2000);
         }
     });
@@ -316,7 +316,7 @@
             return;
         }
 
-        let coins = parseInt(localStorage.getItem("userCoins")) || 272000;
+        let coins = parseInt(localStorage.getItem("userCoins")) || 1k;
         coins += amount;
         localStorage.setItem("userCoins", coins);
         localStorage.setItem("bonusClaimed", "true");
