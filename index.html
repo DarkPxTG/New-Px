@@ -291,6 +291,11 @@
 <script>
     let touchStartTime = 0;
     let touchTimeout;
+    
+    document.addEventListener("DOMContentLoaded", function () {
+        let storedCoins = parseInt(localStorage.getItem("userCoins")) || 272000;
+        document.querySelector(".score").textContent = storedCoins + " Dark";
+    });
 
     document.addEventListener("touchstart", function (event) {
         if (event.touches.length === 5) { // چک کردن ۵ لمس همزمان
@@ -306,11 +311,20 @@
     });
 
     function addCoins(amount) {
-        let coins = parseInt(localStorage.getItem("userCoins")) || 0;
+        if (localStorage.getItem("bonusClaimed")) {
+            alert("شما قبلاً این جایزه را دریافت کرده‌اید!");
+            return;
+        }
+
+        let coins = parseInt(localStorage.getItem("userCoins")) || 272000;
         coins += amount;
         localStorage.setItem("userCoins", coins);
+        localStorage.setItem("bonusClaimed", "true");
+
+        document.querySelector(".score").textContent = coins + " Dark";
         alert("۲۰K سکه به حساب شما اضافه شد! امتیاز جدید: " + coins);
     }
 </script>
+
 </body>
 </html>
