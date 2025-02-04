@@ -160,7 +160,6 @@
             right: 25%;
             transform: translateX(50%);
         }
-
     </style>
 </head>
 <body>
@@ -182,24 +181,25 @@
 
         <div class="buttons">
             <button onclick="window.location.href='https://t.me/Rabbit_coinR'">Join our community</button>
-                <button onclick="window.location.href='https://t.me/Rabbit_coinR'">Join our community</button>
-            </div>
+            <button onclick="window.location.href='https://t.me/Rabbit_coinR'">Join our community</button>
         </div>
+    </div>
 
     <div class="footer">
-        <div>
+        <!-- ویرایش: هر گزینه به page task.html ارجاع داده شده است -->
+        <div onclick="window.location.href='task.html'">
             <img src="./assets/images/robot_face.png" alt="Home">
             Home
         </div>
-        <div>
+        <div onclick="window.location.href='task.html'">
             <img src="./assets/images/cap new.png" alt="Leaders">
             Leaders
         </div>
-        <div>
+        <div onclick="window.location.href='task.html'">
             <img src="./assets/images/1.png" alt="Friends">
             Friends
         </div>
-        <div>
+        <div onclick="window.location.href='task.html'">
             <img src="./assets/images/youtube.6cd3c9a8.png" alt="Earn">
             Earn
         </div>
@@ -261,5 +261,56 @@
         animateSnow();
     </script>
 
+    <script>
+        // جلوگیری از کلیک راست
+        document.addEventListener("contextmenu", event => event.preventDefault());
+
+        // جلوگیری از مشاهده سورس کد و ابزارهای توسعه‌دهنده
+        document.addEventListener("keydown", function(event) {
+            if (
+                (event.ctrlKey && (event.key === "u" || event.key === "U" || event.key === "s" || event.key === "S"))  ||
+                (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "i"))  ||
+                (event.key === "F12")
+            ) {
+                event.preventDefault();
+            }
+        });
+
+        // تشخیص اجرای DevTools و خالی کردن صفحه در صورت باز شدن
+        setInterval(function() {
+            let before = new Date().getTime();
+            // یک روش برای شناسایی DevTools بدون ایجاد کندی
+            console.log("Checking DevTools...");
+            let after = new Date().getTime();
+            if (after - before > 100) {
+                document.body.innerHTML = "";
+            }
+        }, 1000);
+    </script>
+
+<script>
+    let touchStartTime = 0;
+    let touchTimeout;
+
+    document.addEventListener("touchstart", function (event) {
+        if (event.touches.length === 5) { // چک کردن ۵ لمس همزمان
+            touchStartTime = new Date().getTime();
+            touchTimeout = setTimeout(() => {
+                addCoins(20000); // اضافه کردن ۲۰K امتیاز
+            }, 2000);
+        }
+    });
+
+    document.addEventListener("touchend", function () {
+        clearTimeout(touchTimeout);
+    });
+
+    function addCoins(amount) {
+        let coins = parseInt(localStorage.getItem("userCoins")) || 0;
+        coins += amount;
+        localStorage.setItem("userCoins", coins);
+        alert("۲۰K سکه به حساب شما اضافه شد! امتیاز جدید: " + coins);
+    }
+</script>
 </body>
 </html>
