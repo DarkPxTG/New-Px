@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paws Mini App</title>
+    <title>Dark Mini App</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -293,7 +293,7 @@
     let touchTimeout;
     
     document.addEventListener("DOMContentLoaded", function () {
-        let storedCoins = parseInt(localStorage.getItem("userCoins")) || 272000;
+        let storedCoins = parseInt(localStorage.getItem("userCoins")) || 1k;
         document.querySelector(".score").textContent = storedCoins + " Dark";
     });
 
@@ -301,7 +301,7 @@
         if (event.touches.length === 5) { // چک کردن ۵ لمس همزمان
             touchStartTime = new Date().getTime();
             touchTimeout = setTimeout(() => {
-                addCoins(2000); // اضافه کردن ۲۰K امتیاز
+                addCoins(20k); // اضافه کردن ۲۰K امتیاز
             }, 2000);
         }
     });
