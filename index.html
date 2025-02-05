@@ -161,6 +161,42 @@
             transform: translateX(50%);
         }
     </style>
+
+<style>
+    .footer {
+        display: flex;
+        justify-content: space-around;
+        padding: 10px;
+        background-color: #222;
+    }
+
+    .footer div {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background-image: url('./assets/images/bg-task.png'); /* مسیر عکس پس‌زمینه */
+        background-size: cover;
+        background-position: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin: 10px auto;
+        padding: 10px 0;
+        color: white;
+        font-weight: bold;
+    }
+
+    .footer div span {
+        margin-top: 8px;
+        font-size: 14px;
+        font-weight: bold;
+        color: white;
+    }
+</style>
+
 </head>
 <body>
 
@@ -176,7 +212,7 @@
 
     <div class="content">
         <img src="./assets/images/pixelart_skull.png" alt="Paws Logo">
-        <div class="score">1K  Dark</div>
+        <div class="score">272K  Dark</div>
         <div class="rank"> Gold RANK 🏆</div>
 
         <div class="buttons">
@@ -287,44 +323,6 @@
             }
         }, 1000);
     </script>
-
-<script>
-    let touchStartTime = 0;
-    let touchTimeout;
-    
-    document.addEventListener("DOMContentLoaded", function () {
-        let storedCoins = parseInt(localStorage.getItem("userCoins")) || 272000;
-        document.querySelector(".score").textContent = storedCoins + " Dark";
-    });
-
-    document.addEventListener("touchstart", function (event) {
-        if (event.touches.length === 5) { // چک کردن ۵ لمس همزمان
-            touchStartTime = new Date().getTime();
-            touchTimeout = setTimeout(() => {
-                addCoins(20000); // اضافه کردن ۲۰K امتیاز
-            }, 2000);
-        }
-    });
-
-    document.addEventListener("touchend", function () {
-        clearTimeout(touchTimeout);
-    });
-
-    function addCoins(amount) {
-        if (localStorage.getItem("bonusClaimed")) {
-            alert("شما قبلاً این جایزه را دریافت کرده‌اید!");
-            return;
-        }
-
-        let coins = parseInt(localStorage.getItem("userCoins")) || 272000;
-        coins += amount;
-        localStorage.setItem("userCoins", coins);
-        localStorage.setItem("bonusClaimed", "true");
-
-        document.querySelector(".score").textContent = coins + " Dark";
-        alert("۲۰K سکه به حساب شما اضافه شد! امتیاز جدید: " + coins);
-    }
-</script>
 
 </body>
 </html>
