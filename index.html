@@ -163,11 +163,12 @@
     </style>
 
 <style>
+    /* استایل‌های قبلی */
     .footer {
         display: flex;
         justify-content: space-around;
-        padding: 10px;
         background-color: #222;
+        padding: 10px;
     }
 
     .footer div {
@@ -195,7 +196,16 @@
         font-weight: bold;
         color: white;
     }
+
+    /* اضافه کردن فاصله بیشتر از پایین صفحه */
+    .footer {
+        position: fixed;
+        bottom: -70px;
+        width: 100%;
+        padding: 10px 0;
+    }
 </style>
+
 
 </head>
 <body>
